@@ -13,31 +13,44 @@ def load_documents() -> List:
         product_full_name: str
         version: str
         language: str
+    
+    PRODUCT_LOAD = os.getenv("PRODUCT_LOAD")
+    PRODUCT_FULL_NAME = os.getenv("PRODUCT_FULL_NAME")
+    PRODUCT_VERSION = os.getenv("PRODUCT_VERSION")
+    PRODUCT_LANG = os.getenv("PRODUCT_LANG")
 
+    #products = [
+    #    Product(
+    #        "red_hat_openshift_ai_self-managed",
+    #        "Red Hat OpenShift AI Self-Managed",
+    #        "2.14",
+    #        "en-US",
+    #    ),
+    #    Product(
+    #        "openshift_container_platform",
+    #        "Red Hat OpenShift Container Platform",
+    #        "4.17",
+    #        "en-US",
+    #    ),
+    #    Product(
+    #        "red_hat_enterprise_linux", 
+    #        "Red Hat Enterprise Linux 9", 
+    #        "9", 
+    #        "en-US"
+    #    ),
+    #    Product(
+    #        "red_hat_ansible_automation_platform",
+    #        "Red Hat Ansible Automation Platform",
+    #        "2.5",
+    #        "en-US",
+    #    ),
+    #]
     products = [
         Product(
-            "red_hat_openshift_ai_self-managed",
-            "Red Hat OpenShift AI Self-Managed",
-            "2.14",
-            "en-US",
-        ),
-        Product(
-            "openshift_container_platform",
-            "Red Hat OpenShift Container Platform",
-            "4.17",
-            "en-US",
-        ),
-        Product(
-            "red_hat_enterprise_linux", 
-            "Red Hat Enterprise Linux 9", 
-            "9", 
-            "en-US"
-        ),
-        Product(
-            "red_hat_ansible_automation_platform",
-            "Red Hat Ansible Automation Platform",
-            "2.5",
-            "en-US",
+            PRODUCT_LOAD,
+            PRODUCT_FULL_NAME,
+            PRODUCT_VERSION,
+            PRODUCT_LANG,
         ),
     ]
     return products
