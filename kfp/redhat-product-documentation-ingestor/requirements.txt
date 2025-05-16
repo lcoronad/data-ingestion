@@ -8,5 +8,5 @@
 # tqdm==4.66.2
 # weaviate-client==3.26.2
 kfp==2.10.1
-kfp-kubernetes
+kfp-kubernetes==1.4.0
 python-dotenv
