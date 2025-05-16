@@ -16,23 +16,13 @@ def load_documents() -> List:
         version: str
         language: str
     
-    PRODUCT_LOAD = os.getenv("PRODUCT_LOAD")
-    PRODUCT_FULL_NAME = os.getenv("PRODUCT_FULL_NAME")
-    PRODUCT_VERSION = os.getenv("PRODUCT_VERSION")
-    PRODUCT_LANG = os.getenv("PRODUCT_LANG")
-
-    print(f"PRODUCT_LOAD {PRODUCT_LOAD}")
-    print(f"PRODUCT_FULL_NAME {PRODUCT_FULL_NAME}")
-    print(f"PRODUCT_VERSION {PRODUCT_VERSION}")
-    print(f"PRODUCT_LANG {PRODUCT_LANG}")    
-
-    #products = [
-    #    Product(
-    #        "red_hat_openshift_ai_self-managed",
-    #        "Red Hat OpenShift AI Self-Managed",
-    #        "2.14",
-    #        "en-US",
-    #    ),
+    products = [
+        Product(
+            "red_hat_openshift_ai_self-managed",
+            "Red Hat OpenShift AI Self-Managed",
+            "2.14",
+            "en-US",
+        ),
     #    Product(
     #        "openshift_container_platform",
     #        "Red Hat OpenShift Container Platform",
@@ -51,15 +41,15 @@ def load_documents() -> List:
     #        "2.5",
     #        "en-US",
     #    ),
-    #]
-    products = [
-        Product(
-            PRODUCT_LOAD,
-            PRODUCT_FULL_NAME,
-            PRODUCT_VERSION,
-            PRODUCT_LANG,
-        ),
     ]
+    #products = [
+    #    Product(
+    #        PRODUCT_LOAD,
+    #        PRODUCT_FULL_NAME,
+    #        PRODUCT_VERSION,
+    #        PRODUCT_LANG,
+    #    ),
+    #]
     return products
 
 
