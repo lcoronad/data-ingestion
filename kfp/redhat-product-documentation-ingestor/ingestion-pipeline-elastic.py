@@ -8,6 +8,8 @@ from kfp.dsl import Artifact, Input, Output
 
 @dsl.component()
 def load_documents() -> List:
+    import os
+    
     class Product(NamedTuple):
         product: str
         product_full_name: str
