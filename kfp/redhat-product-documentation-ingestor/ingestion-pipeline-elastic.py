@@ -299,9 +299,9 @@ def format_documents(documents: List, splits_artifact: Output[Artifact]):
 
     # return document_splits
 
-#base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/minimal-gpu:2024.2",
+#base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2024.2",
 @dsl.component(
-    base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2024.2",
+    base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/minimal-gpu:2024.2",
     packages_to_install=[
         "langchain-community==0.3.8",
         "langchain==0.3.8",
