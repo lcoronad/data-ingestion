@@ -348,7 +348,8 @@ def ingest_documents(input_artifact: Input[Artifact]):
     def ingest(index_name, splits):
         # Here we use Nomic AI's Nomic Embed Text model to generate embeddings
         # Adapt to your liking
-        model_kwargs = {"trust_remote_code": True, "device": "cuda"}
+        #model_kwargs = {"trust_remote_code": True, "device": "cuda"}
+        model_kwargs = {"trust_remote_code": True, "device": "cpu"}
         embeddings = HuggingFaceEmbeddings(
             model_name="nomic-ai/nomic-embed-text-v1",
             model_kwargs=model_kwargs,
