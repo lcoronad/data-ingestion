@@ -383,11 +383,6 @@ def ingest_documents(input_artifact: Input[Artifact]):
 
 @dsl.pipeline(name="Document Ingestion")
 def ingestion_pipeline():
-    class Product(NamedTuple):
-        product: str
-        product_full_name: str
-        version: str
-        language: str
     
     PRODUCT_LOAD = os.getenv("PRODUCT_LOAD")
     PRODUCT_FULL_NAME = os.getenv("PRODUCT_FULL_NAME")
@@ -398,6 +393,11 @@ def ingestion_pipeline():
     print(f"PRODUCT_FULL_NAME {PRODUCT_FULL_NAME}")
     print(f"PRODUCT_VERSION {PRODUCT_VERSION}")
     print(f"PRODUCT_LANG {PRODUCT_LANG}")
+    class Product(NamedTuple):
+        product: str
+        product_full_name: str
+        version: str
+        language: str
 
     load_docs_task = [
         Product(
