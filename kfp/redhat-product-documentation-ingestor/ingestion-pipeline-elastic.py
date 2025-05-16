@@ -393,22 +393,8 @@ def ingestion_pipeline():
     print(f"PRODUCT_FULL_NAME {PRODUCT_FULL_NAME}")
     print(f"PRODUCT_VERSION {PRODUCT_VERSION}")
     print(f"PRODUCT_LANG {PRODUCT_LANG}")
-    class Product(NamedTuple):
-        product: str
-        product_full_name: str
-        version: str
-        language: str
 
-    load_docs_task = [
-        Product(
-            PRODUCT_LOAD,
-            PRODUCT_FULL_NAME,
-            PRODUCT_VERSION,
-            PRODUCT_LANG,
-        ),
-    ]
-
-    #load_docs_task = load_documents()
+    load_docs_task = load_documents()
     format_docs_task = format_documents(documents=load_docs_task.output)
     #format_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
     ingest_docs_task = ingest_documents(input_artifact=format_docs_task.outputs["splits_artifact"])
