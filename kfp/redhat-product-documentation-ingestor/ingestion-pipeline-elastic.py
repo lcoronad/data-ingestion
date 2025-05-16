@@ -9,7 +9,7 @@ from kfp.dsl import Artifact, Input, Output
 @dsl.component()
 def load_documents() -> List:
     import os
-    
+
     class Product(NamedTuple):
         product: str
         product_full_name: str
@@ -20,6 +20,11 @@ def load_documents() -> List:
     PRODUCT_FULL_NAME = os.getenv("PRODUCT_FULL_NAME")
     PRODUCT_VERSION = os.getenv("PRODUCT_VERSION")
     PRODUCT_LANG = os.getenv("PRODUCT_LANG")
+
+    print(f"PRODUCT_LOAD {PRODUCT_LOAD}")
+    print(f"PRODUCT_FULL_NAME {PRODUCT_FULL_NAME}")
+    print(f"PRODUCT_VERSION {PRODUCT_VERSION}")
+    print(f"PRODUCT_LANG {PRODUCT_LANG}")    
 
     #products = [
     #    Product(
