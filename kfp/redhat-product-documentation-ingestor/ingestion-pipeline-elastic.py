@@ -383,6 +383,16 @@ def ingest_documents(input_artifact: Input[Artifact]):
 
 @dsl.pipeline(name="Document Ingestion")
 def ingestion_pipeline():
+    PRODUCT_LOAD = os.getenv("PRODUCT_LOAD")
+    PRODUCT_FULL_NAME = os.getenv("PRODUCT_FULL_NAME")
+    PRODUCT_VERSION = os.getenv("PRODUCT_VERSION")
+    PRODUCT_LANG = os.getenv("PRODUCT_LANG")
+
+    print(f"PRODUCT_LOAD {PRODUCT_LOAD}")
+    print(f"PRODUCT_FULL_NAME {PRODUCT_FULL_NAME}")
+    print(f"PRODUCT_VERSION {PRODUCT_VERSION}")
+    print(f"PRODUCT_LANG {PRODUCT_LANG}")
+
     load_docs_task = load_documents()
     format_docs_task = format_documents(documents=load_docs_task.output)
     #format_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
