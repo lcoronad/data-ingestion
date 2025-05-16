@@ -289,9 +289,9 @@ def format_documents(documents: List, splits_artifact: Output[Artifact]):
 
     # return document_splits
 
-
+#base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/minimal-gpu:2024.2",
 @dsl.component(
-    base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/minimal-gpu:2024.2",
+    base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2024.1",
     packages_to_install=[
         "langchain-community==0.3.8",
         "langchain==0.3.8",
@@ -365,9 +365,9 @@ def ingest_documents(input_artifact: Input[Artifact]):
 def ingestion_pipeline():
     load_docs_task = load_documents()
     format_docs_task = format_documents(documents=load_docs_task.output)
-    format_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
+    #format_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
     ingest_docs_task = ingest_documents(input_artifact=format_docs_task.outputs["splits_artifact"])
-    ingest_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
+    #ingest_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
 
     kubernetes.use_secret_as_env(
         ingest_docs_task,
@@ -377,9 +377,9 @@ def ingestion_pipeline():
     ingest_docs_task.set_env_variable("ES_HOST", "http://elasticsearch-es-http:9200")
     ingest_docs_task.set_env_variable("ES_USER", "elastic")
 
-    kubernetes.add_toleration(format_docs_task, key="nvidia.com/gpu", operator="Exists", effect="NoSchedule")
+    #kubernetes.add_toleration(format_docs_task, key="nvidia.com/gpu", operator="Exists", effect="NoSchedule")
 
-    kubernetes.add_toleration(ingest_docs_task, key="nvidia.com/gpu", operator="Exists", effect="NoSchedule")
+    #kubernetes.add_toleration(ingest_docs_task, key="nvidia.com/gpu", operator="Exists", effect="NoSchedule")
 
 
 if __name__ == "__main__":
