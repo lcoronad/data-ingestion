@@ -16,7 +16,7 @@ def load_documents() -> List:
         version: str
         language: str
     
-    productNameLoad = os.environ.get("PRODUCT_NAME");
+    productNameLoad = os.environ.get("PRODUCT_LOAD");
     productFullNameLoad = os.environ.get("PRODUCT_FULL_NAME");
     versionLoad = os.environ.get("PRODUCT_VERSION");
     languageLoad = os.environ.get("PRODUCT_LANG");
@@ -56,14 +56,6 @@ def load_documents() -> List:
     #        "en-US",
     #    ),
     ]
-    #products = [
-    #    Product(
-    #        PRODUCT_LOAD,
-    #        PRODUCT_FULL_NAME,
-    #        PRODUCT_VERSION,
-    #        PRODUCT_LANG,
-    #    ),
-    #]
     return products
 
 
