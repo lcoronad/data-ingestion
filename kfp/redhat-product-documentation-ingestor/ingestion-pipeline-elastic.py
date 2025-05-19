@@ -16,12 +16,26 @@ def load_documents() -> List:
         version: str
         language: str
     
+    productNameLoad = os.environ.get("PRODUCT_NAME");
+    productFullNameLoad = os.environ.get("PRODUCT_FULL_NAME");
+    versionLoad = os.environ.get("PRODUCT_VERSION");
+    languageLoad = os.environ.get("PRODUCT_LANG");
+
+    if productNameLoad is None:
+        productNameLoad = "red_hat_openshift_ai_self-managed";
+    if productFullNameLoad is None:
+        productFullNameLoad = "Red Hat OpenShift AI Self-Managed";
+    if versionLoad is None:
+        versionLoad = "2.14";
+    if languageLoad is None:
+        languageLoad = "en-US";
+
     products = [
         Product(
-            "red_hat_openshift_ai_self-managed",
-            "Red Hat OpenShift AI Self-Managed",
-            "2.14",
-            "en-US",
+            productNameLoad,
+            productFullNameLoad,
+            versionLoad,
+            languageLoad,
         ),
     #    Product(
     #        "openshift_container_platform",
@@ -386,6 +400,12 @@ def ingestion_pipeline():
     print(f"PRODUCT_LANG {PRODUCT_LANG}")
 
     load_docs_task = load_documents()
+
+    load_docs_task.set_env_variable("PRODUCT_LOAD", PRODUCT_LOAD)
+    load_docs_task.set_env_variable("PRODUCT_FULL_NAME", PRODUCT_FULL_NAME)
+    load_docs_task.set_env_variable("PRODUCT_VERSION", PRODUCT_VERSION)
+    load_docs_task.set_env_variable("PRODUCT_LANG", PRODUCT_LANG)
+
     format_docs_task = format_documents(documents=load_docs_task.output)
     #format_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
     ingest_docs_task = ingest_documents(input_artifact=format_docs_task.outputs["splits_artifact"])
