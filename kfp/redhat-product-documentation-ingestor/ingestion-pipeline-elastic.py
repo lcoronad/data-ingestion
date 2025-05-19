@@ -402,11 +402,7 @@ def ingestion_pipeline():
     #format_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
     ingest_docs_task = ingest_documents(input_artifact=format_docs_task.outputs["splits_artifact"])
     #ingest_docs_task.set_accelerator_type("nvidia.com/gpu").set_accelerator_limit("1")
-    ingest_docs_task.set_memory_request("1Gi")
-    ingest_docs_task.set_cpu_request("1")
-    ingest_docs_task.set_memory_limit("2Gi")
-    ingest_docs_task.set_cpu_limit("2")
-
+    
     kubernetes.use_secret_as_env(
         ingest_docs_task,
         secret_name="elasticsearch-es-elastic-user",
