@@ -16,45 +16,27 @@ def load_documents() -> List:
         version: str
         language: str
     
-    productNameLoad = os.environ.get("PRODUCT_LOAD");
-    productFullNameLoad = os.environ.get("PRODUCT_FULL_NAME");
-    versionLoad = os.environ.get("PRODUCT_VERSION");
-    languageLoad = os.environ.get("PRODUCT_LANG");
+    product_name_load = os.environ.get("PRODUCT_LOAD");
+    product_full_name_load = os.environ.get("PRODUCT_FULL_NAME");
+    version_load = os.environ.get("PRODUCT_VERSION");
+    language_load = os.environ.get("PRODUCT_LANG");
 
-    if productNameLoad is None:
-        productNameLoad = "red_hat_openshift_ai_self-managed";
-    if productFullNameLoad is None:
-        productFullNameLoad = "Red Hat OpenShift AI Self-Managed";
-    if versionLoad is None:
-        versionLoad = "2.14";
-    if languageLoad is None:
-        languageLoad = "en-US";
+    if product_name_load is None:
+        product_name_load = "red_hat_openshift_ai_self-managed";
+    if product_full_name_load is None:
+        product_full_name_load = "Red Hat OpenShift AI Self-Managed";
+    if version_load is None:
+        version_load = "2.14";
+    if language_load is None:
+        language_load = "en-US";
 
     products = [
         Product(
-            productNameLoad,
-            productFullNameLoad,
-            versionLoad,
-            languageLoad,
+            product_name_load,
+            product_full_name_load,
+            version_load,
+            language_load,
         ),
-    #    Product(
-    #        "openshift_container_platform",
-    #        "Red Hat OpenShift Container Platform",
-    #        "4.17",
-    #        "en-US",
-    #    ),
-    #    Product(
-    #        "red_hat_enterprise_linux", 
-    #        "Red Hat Enterprise Linux 9", 
-    #        "9", 
-    #        "en-US"
-    #    ),
-    #    Product(
-    #        "red_hat_ansible_automation_platform",
-    #        "Red Hat Ansible Automation Platform",
-    #        "2.5",
-    #        "en-US",
-    #    ),
     ]
     return products
 
@@ -305,7 +287,6 @@ def format_documents(documents: List, splits_artifact: Output[Artifact]):
 
     # return document_splits
 
-#base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2024.2",
 @dsl.component(
     base_image="image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/minimal-gpu:2024.2",
     packages_to_install=[
